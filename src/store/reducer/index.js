@@ -32,6 +32,10 @@ const todoSlice = createSlice({
                 }
                 return items;
             })
+        },
+        deleteTodo: (state, action) =>{
+            const uid = action.payload;
+            state.allToDos = state.allToDos.filter(items => items.id !== uid)
         }
     }
 })
@@ -40,7 +44,7 @@ const todoSlice = createSlice({
 const todosReducer = todoSlice.reducer
 
 //Action
-export const { addTodo, markCompleted } = todoSlice.actions;
+export const { addTodo, markCompleted, deleteTodo } = todoSlice.actions;
 //Selector
 export const todoSelector = state => state.todosReducer.allToDos
 export default todosReducer;

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { markCompleted, todoSelector } from '../../store/reducer'
+import { deleteTodo, markCompleted, todoSelector } from '../../store/reducer'
 import TodoForm from '../TodoForm'
 
 const Todos = () => {
@@ -9,6 +9,10 @@ const Todos = () => {
     const handleChangeChecked = (todoId) =>{
        dispatch(markCompleted(todoId))
     }
+    const handleDelete = id =>{
+        dispatch(deleteTodo(id))
+    }
+
     return (
         <div className='todo-list'>
             <TodoForm />
@@ -22,6 +26,7 @@ const Todos = () => {
                             type={'checkbox'} 
                             checked={item.completed}
                             onChange={()=>handleChangeChecked(item.id)} />
+                            <button onClick={()=> handleDelete(item.id)}>Delete</button>
                             </li>
                             )
                     })
